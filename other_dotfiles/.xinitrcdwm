@@ -1,0 +1,8 @@
+#!/bin/bash
+feh --bg-fill ~/backgrounds/wallpapers/0018.jpg &
+compton &
+dwmblocks &
+while true;
+do
+	dwm > ~/.dwmlog
+done
