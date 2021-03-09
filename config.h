@@ -66,7 +66,6 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
 	{ NULL,       NULL },
 };
 
@@ -96,6 +95,7 @@ static Key keys[] = {
 	/* modifier             key        function        argument */
 	{ MODKEY,    			XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,               XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,               XK_Escape, spawn,          CMD("leave") },
 
 //	{ MODKEY,               XK_n, tagspwn,          {0} },
 
