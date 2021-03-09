@@ -4,5 +4,5 @@ declare -a options=(
 	"reboot"
 	"exit"
 )
-choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 3 -p "Leave:")
+choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 3)
 $choice
