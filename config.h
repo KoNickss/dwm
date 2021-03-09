@@ -111,7 +111,7 @@ static Key keys[] = {
 	{ MODKEY,     XK_c,      killclient,     {0} },
 	//{ MODKEY,				XK_Left,	   shiftview,      {.i = -1} },
 	//{ MODKEY,				XK_Right,	   shiftview,      {.i = +1} },
-	{ MODKEY,        XK_s,    spawn,          CMD("maim ~/screenshots/$(date +%s).png") },
+	{ 0,        XK_Print,    spawn,          CMD("maim ~/screenshots/$(date +%s).png") },
     /* Layout manipulation */
 	{ MODKEY,               XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,     XK_space,  togglefloating, {0} },
