@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# A script to perform incremental backups using rsync
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+readonly SOURCE_DIR="/"
+readonly BACKUP_DIR="/mnt/backups/"
+readonly DATETIME="$(date '+%Y-%m-%d_%H:%M:%S')"
+readonly BACKUP_PATH="${BACKUP_DIR}/${DATETIME}"
+readonly LATEST_LINK="${BACKUP_DIR}/latest"
+
+mkdir -p "${BACKUP_PATH}"
+
+rsync -av --delete \
+  "${SOURCE_DIR}/" \
+  --link-dest "${LATEST_LINK}" \
+  --exclude="/tmp/" \
+  --exclude="/dev/" \
+  --exclude="/run/" \
+  --exclude="/proc/" \
+  --exclude="/mnt/" \
+  --exclude="/root/" \
+  --exclude="/sys/" \
+  --exclude="/home/konicks/local/" \
+  --exclude="/home/konicks/.anime/" \
+  --exclude="/home/konicks/ds_backup/" \
+  --exclude="/home/konicks/gentoo/" \
+  --exclude="/home/konicks/.local/share/.cache/" \
+  --exclude="/home/konicks/.local/" \
+  --exclude="/home/konicks/.cache/" \
+  --exclude="/home/konicks/Disks/" \
+  --info=progress2 \
+  --no-i-r \
+  "${BACKUP_PATH}"
+
+rm -rf "${LATEST_LINK}"
+ln -s "${BACKUP_PATH}" "${LATEST_LINK}"
