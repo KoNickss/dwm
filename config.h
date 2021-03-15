@@ -14,9 +14,9 @@ static const int topbar            = 1;   /* 0 means bottom bar */
  * Arch repos and is listed as a dependency for this build. JoyPixels is also
  * a hard dependency and makes colored fonts and emojis possible.
  */
-static const char *fonts[]     = {"Mononoki Nerd Font:size=14:antialias=true:autohint=true",
-                                  "Hack:size=14:antialias=true:autohint=true",
-                                  "JoyPixels:size=14:antialias=true:autohint=true"
+static const char *fonts[]     = {"Mononoki Nerd Font:size=12:antialias=true:autohint=true",
+                                  "Hack:size=12:antialias=true:autohint=true",
+                                  "JoyPixels:size=12:antialias=true:autohint=true"
 						     	};
 static const char col_1[]  = "#262626"; /* background color of bar */
 static const char col_2[]  = "#282c34"; /* border color unfocused windows */
@@ -48,6 +48,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       1 << 4,            0,           -1 },
 	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "Vimb",  NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "Org.gnome.Nautilus",  NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "Minecraft Launcher",  NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Spotify",  NULL,       NULL,       1 << 6,       0,           -1 },
