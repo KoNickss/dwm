@@ -57,6 +57,7 @@ static const Rule rules[] = {
 	{ "Steam",  NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Alacritty",  NULL,       NULL,       1,       0,           -1 },
 	{ "XTerm",  NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "heroic",  NULL,       NULL,       1 << 3,       0,           -1 },
 };
 /* layout(s) */
 static const float mfact     = 0.70; /* factor of master area size [0.05..0.95] */

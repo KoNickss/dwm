@@ -32,6 +32,7 @@ rsync -av --delete \
   --exclude="/home/konicks/.local/" \
   --exclude="/home/konicks/.cache/" \
   --exclude="/home/konicks/Disks/" \
+  --exclude="/home/konicks/Games/" \
   --info=progress2 \
   --no-i-r \
   "${BACKUP_PATH}"
