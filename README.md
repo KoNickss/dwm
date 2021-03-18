@@ -1,3 +1,3 @@
 # DWM
-My build of dwm, patched with tilegap
-Also includes my init.vim (.vimrc for neovim) and alacritty.yml
+My build of dwm, patched with tilegap.
+Also includes my other buids and configs in `other_dotfiles`, basically you can steal my look with just this repo
