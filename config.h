@@ -9,6 +9,8 @@ static const unsigned int gappx     = 20;       /* gap pixel between windows */
 static const unsigned int snap     = 32;  /* snap pixel */
 static const int showbar           = 1;   /* 0 means no bar */
 static const int topbar            = 1;   /* 0 means bottom bar */
+static const unsigned int baralpha = 0x50;
+static const unsigned int borderalpha = OPAQUE;
 /* Mononoki Nerd Font must be installed from AUR nerd-fonts-complete.
  * Otherwise, your default font will be Hack which is found in the standard
  * Arch repos and is listed as a dependency for this build. JoyPixels is also
@@ -33,6 +35,11 @@ static const char *colors[][3]        = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_3, col_1, col_2 },
 	[SchemeSel]  = { col_3, col_4,  col_4 },
+};
+static const unsigned int alphas[][3]      = {
+	/*               fg      bg        border     */
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
 /* tagging */
