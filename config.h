@@ -23,7 +23,7 @@ static const char *fonts[]     = {"Mononoki Nerd Font:size=12:antialias=true:aut
 static const char col_1[]  = "#262626"; /* background color of bar */
 static const char col_2[]  = "#282c34"; /* border color unfocused windows */
 static const char col_3[]  = "#d7d7d7";
-static const char col_4[]  = "#252d52"; /* border color focused windows and tags */
+static const char col_4[]  = "#3b4252"; /* border color focused windows and tags */
 //static const char col_4[]  = "#000000"; /* border color focused windows and tags */
 //static const char col_4[]  = "#2a9e3d"; /* border color focused windows and tags */
 /* bar opacity 
