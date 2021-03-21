@@ -1,0 +1,5 @@
+#!/bin/bash
+if [[ $(checkupdates) != "" ]];
+then
+	echo "🎁"	
+fi
