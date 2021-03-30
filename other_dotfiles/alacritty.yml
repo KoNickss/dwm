@@ -34,8 +34,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 7
-    y: 7 
+    x: 5
+    y: 9 
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -120,7 +120,7 @@ font:
     family: JetBrains Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Medium
+    style: Regular
 
   # Bold font face
   bold:
@@ -180,7 +180,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 11.0
+  size: 12.3
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -217,7 +217,7 @@ schemes:
 
   argonaut: &argonaut
     primary:
-      background: '0x222222'
+      background: '0x333333'
       foreground: '0xEBEBEB'
     cursor:
       text: '0x292C3E'
@@ -633,7 +633,7 @@ schemes:
   # iTerm 2 default theme
   iterm: &iterm
    primary:
-     background: '0x101421'
+     background: '0x252525'
      foreground: '0xfffbf6'
    normal:
      black:   '0x2e2e2e'
@@ -1326,7 +1326,7 @@ schemes:
        cyan:    '0x00ffff'
        white:   '0xffffff'
        
-colors: *argonaut
+colors: *iterm
 # Colors (Tomorrow Night Bright)
 #colors:
 #  # Default colors

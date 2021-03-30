@@ -1,15 +1,19 @@
 #include <X11/XF86keysym.h>
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",    NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",   NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",NULL };
+static const char *upvolx[]   = { "/usr/bin/pkill", "-RTMIN+11", "dwmblocks",    NULL };
+static const char *downvolx[]   = { "/usr/bin/pkill", "-RTMIN+11", "dwmblocks",    NULL };
+static const char *mutevolx[]   = { "/usr/bin/pkill", "-RTMIN+11", "dwmblocks",    NULL };
 /* See LICENSE file for copyright and license details. */
 /* appearance */
-static const unsigned int borderpx = 2;   /* border pixel of windows */
-static const unsigned int gappx     = 20;       /* gap pixel between windows */
+static const unsigned int borderpx = 0;   /* border pixel of windows */
+static const unsigned int gappx     = 30;       /* gap pixel between windows and dwm*/
+//static const unsigned int framex	= 50; /* gap between windows */
 static const unsigned int snap     = 32;  /* snap pixel */
 static const int showbar           = 1;   /* 0 means no bar */
 static const int topbar            = 1;   /* 0 means bottom bar */
-static const unsigned int baralpha = 0x50;
+static const unsigned int baralpha = 0xA0;
 static const unsigned int borderalpha = OPAQUE;
 /* Mononoki Nerd Font must be installed from AUR nerd-fonts-complete.
  * Otherwise, your default font will be Hack which is found in the standard
@@ -23,8 +27,8 @@ static const char *fonts[]     = {"Mononoki Nerd Font:size=12:antialias=true:aut
 static const char col_1[]  = "#262626"; /* background color of bar */
 static const char col_2[]  = "#282c34"; /* border color unfocused windows */
 static const char col_3[]  = "#d7d7d7";
-static const char col_4[]  = "#3b4252"; /* border color focused windows and tags */
-//static const char col_4[]  = "#000000"; /* border color focused windows and tags */
+//static const char col_4[]  = "#5a7c59"; /* border color focused windows and tags */
+static const char col_4[]  = "#333333"; /* border color focused windows and tags */
 //static const char col_4[]  = "#2a9e3d"; /* border color focused windows and tags */
 /* bar opacity 
  * 0xff is no transparency.
@@ -112,8 +116,8 @@ static Key keys[] = {
 	{ MODKEY,               XK_b,      togglebar,      {0} },
 	{ MODKEY,               XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,               XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,               XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,               XK_d,      incnmaster,     {.i = -1 } },
+	//{ MODKEY,               XK_i,      incnmaster,     {.i = +1 } },
+	//{ MODKEY,               XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,               XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,               XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,               XK_q,      zoom,           {0} },
@@ -157,6 +161,10 @@ static Key keys[] = {
 	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
 	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
 	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+
+	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvolx } },
+	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevolx } },
+	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvolx   } },
 
 };
 

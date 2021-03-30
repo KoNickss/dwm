@@ -1,5 +1,3 @@
-source ~/.config/nvim/ports/record.vim
-source ~/.config/nvim/colors/record.vim
 set relativenumber
 set wrap!
 nnoremap <C-f> :NERDTreeToggle<CR>
@@ -12,13 +10,18 @@ nnoremap x "_x
 set tabstop=4
 set shiftwidth=4
 set smarttab
-source ~/.config/nvim/ports/record.vim
-source ~/.config/nvim/colors/record.vim
-source ~/.config/nvim/ports/record.vim
-source ~/.config/nvim/colors/record.vim
-source ~/.config/nvim/ports/record.vim
-source ~/.config/nvim/colors/record.vim
-source ~/.config/nvim/ports/record.vim
-source ~/.config/nvim/colors/record.vim
-source ~/.config/nvim/ports/record.vim
-source ~/.config/nvim/colors/record.vim
+color nord
+
+call plug#begin('~/.config/nvim/ports')
+
+Plug 'neoclide/coc.nvim'
+Plug 'mhinz/vim-startify'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'arrufat/vala.vim'
+Plug 'dense-analysis/ale'
+Plug 'preservim/nerdtree'
+
+call plug#end()
+
+let g:airline_theme='powerlineish'
