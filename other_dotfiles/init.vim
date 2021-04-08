@@ -10,16 +10,15 @@ nnoremap x "_x
 set tabstop=4
 set shiftwidth=4
 set smarttab
+set mouse=a
 color nord
 
 call plug#begin('~/.config/nvim/ports')
 
-Plug 'neoclide/coc.nvim'
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'arrufat/vala.vim'
-Plug 'dense-analysis/ale'
 Plug 'preservim/nerdtree'
 
 call plug#end()

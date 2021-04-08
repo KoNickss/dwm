@@ -7,7 +7,7 @@ static const char *downvolx[]   = { "/usr/bin/pkill", "-RTMIN+11", "dwmblocks", 
 static const char *mutevolx[]   = { "/usr/bin/pkill", "-RTMIN+11", "dwmblocks",    NULL };
 /* See LICENSE file for copyright and license details. */
 /* appearance */
-static const unsigned int borderpx = 0;   /* border pixel of windows */
+static const unsigned int borderpx = 3;   /* border pixel of windows */
 static const unsigned int gappx     = 30;       /* gap pixel between windows and dwm*/
 //static const unsigned int framex	= 50; /* gap between windows */
 static const unsigned int snap     = 32;  /* snap pixel */
@@ -20,15 +20,21 @@ static const unsigned int borderalpha = OPAQUE;
  * Arch repos and is listed as a dependency for this build. JoyPixels is also
  * a hard dependency and makes colored fonts and emojis possible.
  */
-static const char *fonts[]     = {"Mononoki Nerd Font:size=12:antialias=true:autohint=true",
+static const char *fonts[]     = {
+								  "Mononoki Nerd Font:size=12:antialias=true:autohint=true",
                                   "Hack:size=12:antialias=true:autohint=true",
                                   "JoyPixels:size=12:antialias=true:autohint=true"
 						     	};
 static const char col_1[]  = "#262626"; /* background color of bar */
+//static const char col_1[]  = "#0f1a2e"; /* background color of bar */
 static const char col_2[]  = "#282c34"; /* border color unfocused windows */
 static const char col_3[]  = "#d7d7d7";
-//static const char col_4[]  = "#5a7c59"; /* border color focused windows and tags */
-static const char col_4[]  = "#333333"; /* border color focused windows and tags */
+static const char col_4[]  = "#262626"; /* border color focused windows and tags */
+static const char col_5[]  = "#8cac00"; /* border color focused windows and tags */
+//static const char col_5[]  = "#111d35"; /* border color focused windows and tags */
+//static const char col_5[]  = "#585d71"; /* border color focused windows and tags */
+static const char col_6[]  = "#333333"; /* border color focused windows and tags */
+//static const char col_4[]  = "#3f00e4"; /* border color focused windows and tags */
 //static const char col_4[]  = "#2a9e3d"; /* border color focused windows and tags */
 /* bar opacity 
  * 0xff is no transparency.
@@ -37,8 +43,9 @@ static const char col_4[]  = "#333333"; /* border color focused windows and tags
  */
 static const char *colors[][3]        = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_3, col_1, col_2 },
-	[SchemeSel]  = { col_3, col_4,  col_4 },
+	[SchemeNorm] = { col_3, col_1, col_5 },
+	[SchemeSel]  = { col_3, col_5,  col_5 },
+	[SchemeTitle]  = { col_3, col_1,  col_5 },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
@@ -48,7 +55,6 @@ static const unsigned int alphas[][3]      = {
 
 /* tagging */
 static const char *tags[] = { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "}; 
-// static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 
 static const Rule rules[] = {

@@ -1,7 +1,17 @@
 #!/bin/bash
-website=$(curl -s https://finance.yahoo.com/quote/$1)
+if [[ ! $1 ]];
+then
+	echo "Usage: stonks STOCK_ID (stonks AAPL; stonks GME)"
+	echo "Flags: -c = show price of crypto (stonks -c XMR)"
+fi
+if [[ $1 != "-c" ]];
+then
+	website=$(curl -s https://finance.yahoo.com/quote/$1)
+else
+	website=$(curl -s https://finance.yahoo.com/quote/$2-USD)
+fi
 mclose=$(echo $website | grep -Po 'data-reactid="37">\K[^<]+' | head -n 1)
-if [[ $mclose =~ ^[+-]?[0-9]+\.?[0-9]*$ ]];
+if [[ $mclose =~ "^[0-9]*.[0-9]*$" ]];
 then
     echo $mclose
 else
