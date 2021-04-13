@@ -21,16 +21,16 @@ static const unsigned int borderalpha = OPAQUE;
  * a hard dependency and makes colored fonts and emojis possible.
  */
 static const char *fonts[]     = {
-								  "Mononoki Nerd Font:size=12:antialias=true:autohint=true",
-                                  "Hack:size=12:antialias=true:autohint=true",
-                                  "JoyPixels:size=12:antialias=true:autohint=true"
+								  "JetBrains Mono:size=10:antialias=true:autohint=true",
+                                  "Hack:size=10:antialias=true:autohint=true",
+                                  "JoyPixels:size=10:antialias=true:autohint=true"
 						     	};
 static const char col_1[]  = "#262626"; /* background color of bar */
 //static const char col_1[]  = "#0f1a2e"; /* background color of bar */
 static const char col_2[]  = "#282c34"; /* border color unfocused windows */
 static const char col_3[]  = "#d7d7d7";
 static const char col_4[]  = "#262626"; /* border color focused windows and tags */
-static const char col_5[]  = "#8cac00"; /* border color focused windows and tags */
+static const char col_5[]  = "#495843"; /* border color focused windows and tags */
 //static const char col_5[]  = "#111d35"; /* border color focused windows and tags */
 //static const char col_5[]  = "#585d71"; /* border color focused windows and tags */
 static const char col_6[]  = "#333333"; /* border color focused windows and tags */
@@ -54,7 +54,8 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "}; 
+//static const char *tags[] = { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "}; 
+static const char *tags[] = { " env ", " www ", " ext ", " go ", " home ", " srv ", " spot ", " dis ", " tms "}; 
 
 
 static const Rule rules[] = {

@@ -23,4 +23,4 @@ Plug 'preservim/nerdtree'
 
 call plug#end()
 
-let g:airline_theme='powerlineish'
+let g:airline_theme='deus'
