@@ -106,4 +106,5 @@ alias mpv="devour mpv"
 alias sxiv="devour sxiv"
 alias legendary="devour legendary"
 alias neovide="devour neovide"
+alias code="devour code"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

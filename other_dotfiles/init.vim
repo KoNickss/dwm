@@ -16,10 +16,12 @@ color nord
 call plug#begin('~/.config/nvim/ports')
 
 Plug 'mhinz/vim-startify'
+Plug 'neoclide/coc.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'arrufat/vala.vim'
 Plug 'preservim/nerdtree'
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
