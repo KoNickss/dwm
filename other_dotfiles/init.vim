@@ -12,17 +12,9 @@ set shiftwidth=4
 set smarttab
 set mouse=a
 color nord
-
-call plug#begin('~/.config/nvim/ports')
-
-Plug 'mhinz/vim-startify'
-Plug 'neoclide/coc.nvim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'arrufat/vala.vim'
-Plug 'preservim/nerdtree'
-Plug 'ap/vim-css-color'
-
-call plug#end()
-
 let g:airline_theme='deus'
+let g:neovide_cursor_vfx_mode = "railgun"
+set guifont="JetBrains Mono"
+let s:fontsize = 12
+source ~/.config/nvim/ports/record.vim
+source ~/.config/nvim/colors/record.vim

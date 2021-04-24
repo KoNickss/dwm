@@ -8,7 +8,7 @@ static const char *mutevolx[]   = { "/usr/bin/pkill", "-RTMIN+11", "dwmblocks", 
 /* See LICENSE file for copyright and license details. */
 /* appearance */
 static const unsigned int borderpx = 3;   /* border pixel of windows */
-static const unsigned int gappx     = 30;       /* gap pixel between windows and dwm*/
+static const unsigned int gappx     = 50;       /* gap pixel between windows and dwm*/
 //static const unsigned int framex	= 50; /* gap between windows */
 static const unsigned int snap     = 32;  /* snap pixel */
 static const int showbar           = 1;   /* 0 means no bar */
