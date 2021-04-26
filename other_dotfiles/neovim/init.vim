@@ -11,7 +11,6 @@ set tabstop=4
 set shiftwidth=4
 set smarttab
 set mouse=a
-color nord
 let g:airline_theme='deus'
 let g:neovide_cursor_vfx_mode = "railgun"
 set guifont="JetBrains Mono"
