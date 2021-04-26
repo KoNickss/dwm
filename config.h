@@ -23,7 +23,7 @@ static const unsigned int borderalpha = OPAQUE;
  * a hard dependency and makes colored fonts and emojis possible.
  */
 static const char *fonts[]     = {
-								  "JetBrains Mono:size=10:antialias=true:autohint=true",
+								  "JetBrains Mono:size=12:antialias=true:autohint=true",
                                   "Hack:size=10:antialias=true:autohint=true",
                                   "JoyPixels:size=10:antialias=true:autohint=true"
 						     	};
@@ -51,7 +51,7 @@ static const char *colors[][3]        = {
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
-	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeNorm] = { baralpha, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
