@@ -1,0 +1,206 @@
+#!/bin/bash
+if [[ $NPURL == "" ]];
+then
+	NPURL="github.com"
+fi
+if [[ $(uname) == "Linux" ]];
+then
+	reset="\e[0m"
+	green="\e[0;32m"
+	red="\e[0;31m"
+	purple="\e[0;35m"
+	yellow="\e[0;33m"
+fi
+if [[ $(uname) == "Darwin" ]];
+then
+	reset="\033[0m"
+	green="\033[0;32m"
+	red="\033[0;31m"
+	purple="\033[0;35m"
+	yellow="\033[0;33m"
+fi
+if [[ $1 == setup ]];
+then
+	mkdir ~/.config
+	mkdir ~/.config/nvim
+	touch ~/.config/nvim/init.vim
+	mkdir ~/.config/nvim/ports
+	echo "source ~/.config/nvim/ports/record.vim" >> ~/.config/nvim/init.vim
+	echo "source ~/.config/nvim/colors/record.vim" >> ~/.config/nvim/init.vim
+	touch ~/.config/nvim/ports/record.vim
+	mkdir ~/.config/nvim/colors/
+	touch ~/.config/nvim/colors/record.vim
+	echo -e "${green}==> Done.${reset}"
+fi
+if [[ $1 == install ]];
+then
+	if [[ ! -f ~/.config/nvim/ports/record.vim ]];
+	then
+		echo -e "${red}==>${reset} Please run ${green}neoport setup${reset} to create a file structure in the config folder first"
+		exit 1
+	fi
+	if [[ $2 == "" ]];
+	then
+		echo -e "${red}==>${reset} Refusing to run installation due to missing argument"
+		exit 1
+	fi
+	exname=$(echo $2 | cut -f 2 -d '/')
+	echo -e "${purple}==>${reset} Cloning git repo"
+	uname > /dev/null
+	git clone https://username:password@$NPURL/$2 ~/.config/nvim/ports/$exname
+	if [[ $? == 128 ]];
+	then
+		echo -e "${red}==>${reset} Failure in running git: invalid repo, stopping"
+		exit 1
+	fi
+	cd ~/.config/nvim/ports/$exname
+	if [[ $(ls | grep plugin) == "" ]] && [[ $(ls | grep autoload) == "" ]] && [[ $(ls | grep syntax) == "" ]];
+	then
+		echo -e "${red}==>${reset} Refusing to install non-vim repo"
+		cd .. ; rm -rf $exname
+		exit 1
+	fi
+	echo -e "${green}==>${reset} Installing extension"
+	echo -e "${yellow}==>${reset} Registering extension in database"
+	echo "set rtp+=~/.config/nvim/ports/$exname/" >> ~/.config/nvim/ports/record.vim
+	echo -e "${green}==> Done.${reset}"
+fi
+if [[ $1 == update ]];
+then
+	if [[ ! -f ~/.config/nvim/ports/record.vim ]];
+	then
+		echo -e "${red}==>${reset} Please run ${green}neoport setup${reset} to create a file structure in the config folder first"
+		exit 1
+	fi
+	declare -a plist
+	echo -e "${purple}==>${reset} Fetching extension list"
+	plist=$(ls ~/.config/nvim/ports/)
+	plist=${plist/record.vim}
+	for extension in $plist
+	do
+		echo -e "${green}==>${reset} Updating $extension"
+		cd ~/.config/nvim/ports/$extension
+		git config pull.rebase false
+		git pull
+		cd ..
+	done
+fi
+if [[ $1 == remove ]];
+then
+	if [[ ! -f ~/.config/nvim/ports/record.vim ]];
+	then
+		echo -e "${red}==>${reset} Please run ${green}neoport setup${reset} to create a file structure in the config folder first"
+		exit 1
+	fi
+	if [[ $2 == "" ]];
+	then
+		echo -e "${red}==>${reset} Removal cancelled, lack of args."
+		exit 1
+	fi
+	if [[ $(ls ~/.config/nvim/ports | grep $2) == "" ]];
+	then
+		echo -e "${red}==>${reset} Extension not found, stopping"
+		exit 1
+	fi
+	echo -e "${purple}==>${reset} Attempting to uninstall $2"
+	echo -e "${green}==>${reset} Attempting to unport extension"
+	rm -rf ~/.config/nvim/ports/$2/
+	echo -e "${yellow}==>${reset} Removing extension from database"
+	grep -v /$2/ ~/.config/nvim/ports/record.vim > ~/.config/nvim/ports/record.vim.new
+	mv ~/.config/nvim/ports/record.vim.new ~/.config/nvim/ports/record.vim
+	echo -e "${green}==> Done. ${reset}"
+fi
+if [[ $1 == color ]];
+then
+	if [[ ! -f ~/.config/nvim/ports/record.vim ]];
+	then
+		echo -e "${red}==>${reset} Please run ${green}neoport setup${reset} to create a file structure in the config folder first"
+		exit 1
+	fi
+	if [[ $2 == install ]];
+	then
+		echo -e "${purple}==>${reset} Creating work directory"
+		rm -rf ~/.tmp/neoport/*
+		mkdir ~/.tmp
+		mkdir ~/.tmp/neoport
+		if [[ $3 == "" ]];
+		then
+			echo -e "${red}==>${reset} Refusing to run installation due to missing argument"
+			exit 1
+		fi
+		echo -e "${purple}==>${reset} Cloning git repo"
+		git clone https://username:password@$NPURL/$3 ~/.tmp/neoport/col
+		if [[ $? == 128 ]];
+		then
+			echo -e "${red}==>${reset} Failure in running git: invalid repo, stopping"
+			exit 1
+		fi
+		echo -e "${green}==>${reset} Installing color scheme"
+		cp ~/.tmp/neoport/col/colors/*.vim ~/.config/nvim/colors/
+		ttbi=$(ls ~/.tmp/neoport/col/colors/ | cut -f 1 -d ' ')
+		echo
+		echo $ttbi
+		echo
+		ttbin=$(echo $ttbi | cut -f 1 -d '.')
+		echo -e "Run ${green}neoport color set $ttbin${reset} to apply theme"
+	fi
+	if [[ $2 == list ]];
+	then
+		lst=$(ls ~/.config/nvim/colors/ | sed 's/\.vim *$//')
+		lst=${lst/record}
+		echo $lst
+	fi
+	if [[ $2 == set ]];
+	then
+		echo "color $3" > ~/.config/nvim/colors/record.vim
+
+	fi
+
+fi
+if [[ $1 == --help ]];
+then
+	echo "neoPort v1.0.6"
+	echo "================================================"
+	echo "neoPort is an easy to use command-line package"
+	echo "manager for neoVim (not vim). It has support for"
+	echo "all extensions on github and all color schemes"
+	echo "on github. Make sure that you're using neoPort"
+	echo "on a fresh neovim setup as having other package"
+	echo "managers can cause conflicts with manually ported"
+	echo "color schemes. Extensions don't usually conflict"
+	echo "but, once again, I recommend doing this on a fresh"
+	echo "neovim install"
+	echo "================================================"
+	echo "Why did I make neoPort? I was tired of plug-in"
+	echo "managers that were clunky, required file editing"
+	echo "and couldn't be adapted into bash workflows, no"
+	echo "one wants to edit a file and run a vim command to"
+	echo "install a plug-in when a simple bash command"
+	echo "can do the same."
+	echo "================================================"
+	echo "Syntax:"
+	echo
+	echo "Tip: when you see 'author/repo' it reffers to the"
+	echo "last part of the github url of the extension, so"
+	echo "for https://github.com/konickss/neoport it's"
+	echo "'konickss/neoport'."
+	echo 
+	echo "Installing extensions:"
+	echo "neoport install author/repo"
+	echo
+	echo "Removing extensions:"
+	echo "neoport remove repo"
+	echo 
+	echo "Updating all extensions:"
+	echo "neoport update"
+	echo
+	echo "Installing color scheme"
+	echo "neoport color install author/repo"
+	echo 
+	echo "Listing installed color schemes and applying one:"
+	echo "neoport color list"
+	echo "neoport color set colorscheme"
+	echo 
+	echo "TO SET UP NEOPORT FOR A USER, RUN 'neoport setup' as that user"
+fi
+NPURL=""

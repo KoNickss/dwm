@@ -16,5 +16,3 @@ let g:airline_theme='deus'
 let g:neovide_cursor_vfx_mode = "railgun"
 set guifont="JetBrains Mono"
 let s:fontsize = 12
-source ~/.config/nvim/ports/record.vim
-source ~/.config/nvim/colors/record.vim

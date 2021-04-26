@@ -1,10 +1,10 @@
 //Modify this file to change what commands output to your statusbar, and recompile using the make command.
 static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
-	{" AAPL: ", "stonks AAPL",							10,		51,},
-	{"GME: ", "stonks GME",							10,		52,},
-	{"BTC: ", "stonks -c BTC",							10,		52,},
-	//{"CPU: ", "/opt/blocks/cpu",							3,		13,},
+	{" AAPL: ", "stonks AAPL",							10,		0,},
+	//{"GME: ", "stonks GME",							10,		0,},
+	//{"BTC: ", "stonks -c BTC",							10,		0,},
+	{"CPU: ", "/opt/blocks/cpu",							3,		13,},
 	//{"RAM: ", "/opt/blocks/mem",							4,		14,},
 	{"🔊 ", "/opt/blocks/volume",							0,		11,},
 	{"", "/opt/blocks/updates",							5,		35,},
