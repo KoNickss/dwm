@@ -34,8 +34,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 1
-    y: 1 
+    x: 0
+    y: 0 
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -817,8 +817,8 @@ schemes:
 
   nord: &nord
      primary:
-         #background: '0x282c34'
-       background: '0x282828'
+       background: '0x282c39'
+       #background: '0x282828'
        foreground: '0xD8DEE9'
      normal:
        black:   '0x3B4252'
@@ -1440,7 +1440,7 @@ colors: *nord
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.50
+background_opacity: 0.60
 # background_opacity: 0.80
 
 #selection:

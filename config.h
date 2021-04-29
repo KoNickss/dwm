@@ -57,7 +57,7 @@ static const unsigned int alphas[][3]      = {
 
 /* tagging */
 //static const char *tags[] = { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "}; 
-static const char *tags[] = { " env ", " www ", " ext ", " go ", " home ", " srv ", " spot ", " dis ", " tms "}; 
+static const char *tags[] = { " env ", " www ", " ext ", " go ", " home ", " srv ", " spot ", " dis ", " vbox "}; 
 
 
 static const Rule rules[] = {
@@ -73,11 +73,12 @@ static const Rule rules[] = {
 	{ "Minecraft Launcher",  NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Spotify",  NULL,       NULL,       1 << 6,       0,           -1 },
 	{ "discord",  NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "Microsoft Teams - Preview",  NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "Steam",  NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Alacritty",  NULL,       NULL,       1,       0,           -1 },
 	{ "XTerm",  NULL,       NULL,       1 << 5,       0,           -1 },
 	{ "heroic",  NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "VirtualBox Manager",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Gnome-boxes",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 /* layout(s) */
 static const float mfact     = 0.70; /* factor of master area size [0.05..0.95] */
@@ -86,8 +87,8 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "</>",      tile },    /* first entry is default */
+	{ "~~",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 	{ NULL,       NULL },
 };
