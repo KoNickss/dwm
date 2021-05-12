@@ -817,8 +817,10 @@ schemes:
 
   nord: &nord
      primary:
-       background: '0x282c39'
-       #background: '0x282828'
+         #background: '0x0b0e15'
+         #background: '0x282c39'
+       background: '0x283045'
+         #background: '0x282828'
        foreground: '0xD8DEE9'
      normal:
        black:   '0x3B4252'
@@ -830,7 +832,7 @@ schemes:
        cyan:    '0x88C0D0'
        white:   '0xE5E9F0'
      bright:
-       black:   '0x4C566A'
+       black:   '0x7C868A'
        red:     '0xBF616A'
        green:   '0xA3BE8C'
        yellow:  '0xEBCB8B'
@@ -1440,7 +1442,7 @@ colors: *nord
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.60
+background_opacity: 0.70
 # background_opacity: 0.80
 
 #selection:

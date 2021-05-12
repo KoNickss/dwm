@@ -1,0 +1,7 @@
+<box orientation="v" class="results" space-evenly="false">
+<button onclick='minecraft-launcher'>Minecraft</button>
+<button onclick='heroic &amp;'>Epic Games</button>
+<button onclick='spotify &amp;'>Spotify</button>
+<button onclick='discord &amp;'>Discord</button>
+<button onclick='brave &amp;'>Brave</button>
+</box>

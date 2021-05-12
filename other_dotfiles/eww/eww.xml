@@ -1,0 +1,426 @@
+<!-- The main eww configuration file. This is where your widgets and how they appear on the screen and what they
+contain are defined. -->
+
+<eww>
+    <definitions>
+        <!-- This is the place where you structure your widgets, align them and stuff. -->
+        <def name="bar">
+            <box class="bar-container" orientation="h">
+                <box class="bar" orientation="h" hexpand="false" vexpand="false">
+					<left/>
+                    <workspaces/>
+                    <right/>
+                </box>
+            </box>
+        </def>
+
+        <def name="right">
+            <box class="right" orientation="h" space-evenly="false" halign="end">
+				<slider-ram/>
+                <slider-vol/>
+                <time/>
+            </box>
+        </def>
+
+        <def name="left">
+            <box class="left" orientation="h" space-evenly="false" halign="left">
+				<getmbar/>
+            </box>
+        </def>
+
+		<!-- <def name="workspaces">
+            <box orientation="h" class="workspaces" space-evenly="true" halign="center"> 
+                <button onclick="wmctrl -s 0">一</button>
+                <button onclick="wmctrl -s 1">二</button>
+                <button onclick="wmctrl -s 2">三</button> 
+                <button onclick="wmctrl -s 3">四</button>
+                <button onclick="wmctrl -s 4">五</button>
+                <button onclick="wmctrl -s 5">六</button>
+                <button onclick="wmctrl -s 6">七</button>
+                <button onclick="wmctrl -s 7">八</button>
+                <button onclick="wmctrl -s 8">九</button>
+                <button onclick="wmctrl -s 9">十</button>
+            </box>
+        </def>
+		-->
+		<def name="workspaces">
+            <box orientation="h" class="workspaces" space-evenly="true" halign="center"> 
+				<button class="workspace" onclick="dwm-msg run_command view 1">{{if ctag=="1" then "1͟" else "1"}}</button>
+                <button class="workspace" onclick="dwm-msg run_command view 2">{{if ctag=="2" then "2͟" else "2"}}</button>
+                <button class="workspace" onclick="dwm-msg run_command view 4">{{if ctag=="4" then "3͟" else "3"}}</button> 
+                <button class="workspace" onclick="dwm-msg run_command view 8">{{if ctag=="8" then "4͟" else "4"}}</button>
+                <button class="workspace" onclick="dwm-msg run_command view 16">{{if ctag=="16" then "5͟" else "5"}}</button>
+                <button class="workspace" onclick="dwm-msg run_command view 32">{{if ctag=="32" then "6͟" else "6"}}</button>
+                <button class="workspace" onclick="dwm-msg run_command view 64">{{if ctag=="64" then "7͟" else "7"}}</button>
+                <button class="workspace" onclick="dwm-msg run_command view 128">{{if ctag=="128" then "8͟" else "8"}}</button>
+                <button class="workspace" onclick="dwm-msg run_command view 256 ; dwm-msg run_command focusstack 0">{{if ctag=="256" then "9͟" else "9"}}</button>
+            </box>
+        </def>
+
+        <def name="slider-vol">
+            <box orientation="h" class="barslider vol" space-evenly="false" active="true">
+                <box class="label"></box>
+                <scale min="0" max="101" value="{{volume}}" onchange="amixer -D pulse set Master {}%"/>
+            </box>
+        </def>
+		
+        <def name="slider-light">
+            <box orientation="h" class="barslider light" space-evenly="false">
+                <box class="label">⏻</box>
+                <scale min="0" max="101" value="{{light}}" onchange="xbacklight -set {}"/>
+            </box>
+        </def>
+        <def name="slider-ram">
+            <box orientation="h" class="barslider vol" space-evenly="false">
+                <box class="label"></box>
+                <scale min="0" active="false" max="100" value="{{cpu}}"/>
+            </box>
+        </def>
+        <def name="slider-bat">
+            <box orientation="h" 
+                class='barslider bat {{if battery-remaining>50 then "high" else if battery-remaining>10 then "med" else "low"}}'
+                space-evenly="false">
+
+            <box class="label {{charge}}">{{if charge=="Charging" then "" else ""}}</box>
+            <scale min="0" active="false" max="101" value="{{battery-remaining}}"/>
+        </box>
+    </def>
+
+    <def name="sliders">
+        <box class="sliderbox" space-evenly="true">
+            <box orientation="v" class="sliders" space-evenly="false" valign="center" halign="center">
+                <box orientation="h" class="bigslider light" space-evenly="false">
+                </box>
+                <box orientation="h" 
+                    class='bigslider {{if battery-remaining>50 then "high" else if battery-remaining>10 then "med" else "low"}}'
+                    space-evenly="false">
+                    <box class="label {{charge}}">{{if charge=="Charging" then "" else ""}}</box>
+                    <scale min="0" active="false" max="101" value="{{battery-remaining}}"/>
+                </box>
+            </box>
+        </box>
+    </def>
+
+    <def name="volume">
+        <box class="volumebox" space-evenly="true">
+            <box orientation="h" class="volume" space-evenly="false" halign="center" valign="center">
+                <box class="label"></box>
+                <scale min="0" max="101" value="{{volume}}" onchange="amixer -D pulse sset Master {}%"/>
+            </box>
+        </box>
+    </def>
+
+    <def name="progress">
+        <box class="progressbox" space-evenly="true">
+            <box orientation="h" class="battery" space-evenly="false" valign="center" halign="center">
+                <box class="label"></box>
+				<scale min="0" max="101" active="false" value="{{getram}}" valign="center"/>
+            </box>
+        </box>
+    </def>
+
+    <def name="time">
+        <!--Time-->
+		<box class="time">{{date}}, {{day}} - {{hour}}:{{min}}</box>
+    </def>
+	<def name="getmbar">
+		<box class="time">♫ {{music}}</box>
+	</def>
+
+
+        <def name="musicbox">
+            <box class="musicbox" orientation="v">
+                <box orientation="h" class="music" valign="center" space-evenly="false" halign="center">
+						<!-- <box halign="start" class="art" style="background-image: url('{{impath}}');"></box> -->
+                    <!-- <image path="{{impath}}" class="albumart" height="70" width="70"/> -->
+                    <box class="musictext" orientation="v" space-evenly="false" valign="center" halign="start">
+                        <label class="title bold" text="{{music}}" halign="start"/>
+                        <label class="artist" text="{{artist}}" halign="start"/>
+                    </box>
+                </box>
+            </box>
+        </def>
+
+        <def name="controls">
+            <box class="controlbox">
+				<box orientation="v" class="controls" valign="center" space-evenly="false">
+					<button class="control" onclick="~/.config/eww/scripts/media next"></button>
+                    <button class="control" onclick="~/.config/eww/scripts/media previous"></button>
+                    <button class="control">-</button>
+                    <button class="control last" onclick="~/.config/eww/scripts/media play-pause"></button>
+				</box>
+			</box>
+        </def>
+<def name="todaybox">
+            <box class="todaybox" valign="center" halign="start">
+                <box class="today" orientation="v" valign="center" space-evenly="false">
+                    <box class="date" space-evenly="false">{{date}}</box>
+                    <box class="day" space-evenly="false">{{day}}</box>
+                </box>
+            </box>
+        </def>
+
+        <def name="timebox">
+            <box class="timebox" valign="center" halign="center" space-evenly="true">
+                <box class="bigtime" halign="center">{{hour}}:{{min}}</box>
+            </box>
+        </def>
+
+        <def name="mainweather">
+            <box class="mainweather-box" space-evenly="true">
+                <box class="mainweather" orientation="v" space-evenly="false" valign="center">
+                    <box class="sky_icon code-{{sky_icon_code}}" space-evenly="false">{{sky_icon}}</box>
+                    <box class="sky bold" space-evenly="false">{{sky}}</box>
+                    <box class="feeling" space-evenly="false">It feels like {{feeling}}</box>
+                </box>
+            </box>
+        </def>
+
+        <def name="sideweather">
+            <box class="sideweather-box" space-evenly="true" halign="start">
+                <box class="sideweather" orientation="v" space-evenly="false" valign="center">
+                    <box orientation="h" class="weatherline" space-evenly="false">
+                        <box class="weather_icon temp"></box>
+                        <box class="weather">{{temp}}</box>
+                    </box>
+                    <box orientation="h" class="weatherline windline" space-evenly="false">
+                        <box class="weather_icon wind"></box>
+                        <box class="weather">{{wind}}</box>
+                    </box>
+                    <box orientation="h" class="weatherline lastline" space-evenly="false">
+                        <box class="weather_icon humidity"></box>
+                        <box class="weather">{{humidity}}</box>
+                    </box>
+                </box>
+            </box>
+        </def>
+
+        <def name="stats">
+            <box class="statbox" space-evenly="true" valign="end">
+                <box orientation="h" space-evenly="true" halign="center" valign="center">
+                    <box class="first" space-evenly="false" valign="center">
+                        <box class="label cpu"></box>
+                        <label class="stat" text="{{cpu*1.0}}%" valign="center"/>
+                    </box>
+                    <box space-evenly="false" valign="center">
+                        <box class="label ram"></box>
+                        <label class="stat" text="{{ram-used*1.0}}%" valign="center"/>
+                    </box>
+                </box>
+            </box>
+        </def>
+
+        <def name="face">
+            <box space-evenly="false" valign="center" halign="center">
+				<box class="face" style="background-image: url('/home/konicks/profilepics/konicks');"></box>
+            </box>
+        </def>
+
+        <def name="name">
+            <box class="namebox" valign="center" halign="center" space-evenly="true">
+            </box>
+        </def>
+
+        <def name="name">
+            <box class="namebox" space-evenly="true">
+                <box orientation="h" class="name" space-evenly="false" halign="center" valign="center">
+                    <box class="bold">KoNicks</box>
+                    <box>@ArchBox</box>
+                </box>
+            </box>
+        </def>
+
+        <def name="apps">
+            <button class="apps launchbutton" onclick="eww update active='apps'" visible="{{active!='apps'}}"></button>
+        </def>
+
+        <def name="home">
+            <button class="home launchbutton" onclick="eww update active='default'" visible="{{active!='default'}}"></button>
+        </def>
+
+        <def name="wifi">
+            <button class="wifi launchbutton" onclick="eww update active='wifi'" visible="{{active!='wifi'}}">直</button>
+        </def>
+
+        <def name="bluetooth">
+           <button class="bluetooth launchbutton" onclick="eww update active='bluetooth'" visible="{{active!='bluetooth'}}"></button>
+        </def>
+
+        <def name="sleep">
+            <button class="button sleep" onclick="systemctl suspend && ~/.config/herbstluftwm/scripts/lock"></button>
+        </def>
+ 
+
+        <def name="lock">
+            <button class="button lock" onclick="~/.config/eww/scripts/lock"></button>
+        </def>
+
+        <def name="nightmode">
+            <button class="button nightmode" onclick="~/.config/eww/scripts/nightmode"></button>
+        </def>
+
+        <def name="reboot">
+            <button class="button reboot" onclick="systemctl restart"></button>
+        </def>
+
+        <def name="shutdown">
+            <button class="button shutdown" onclick="systemctl -i poweroff">⏻</button>
+        </def>
+
+        <def name="logout">
+            <button class="button logout" onclick="herbstclient quit"></button>
+        </def>
+
+        <def name="exit">
+            <button class="altbutton exit" onclick="eww close launcher">窱</button>
+        </def>
+
+        <def name="refresh">
+            <button class="altbutton refresh" onclick="eww reload"></button>
+        </def>
+
+        <def name="default_left">
+            <box visible="{{active=='default'}}" class="{{init_active}}" orientation="v" space-evenly="false">
+                <box orientation="h" space-evenly="false">
+                    <box class="facegroup" orientation="v" space-evenly="false">
+                        <face/>
+                        <name/>
+                    </box>
+                    <box orientation="v" space-evenly="false">
+                        <box class="buttongroup" orientation="h" space-evenly="false">
+                            <sleep/>
+                            <lock/>
+                            <nightmode/>
+                        </box>
+                        <box class="buttongroup" orientation="h" space-evenly="false">
+                            <reboot/>
+                            <shutdown/>
+                            <logout/>
+                        </box>
+                        <todaybox/>
+                    </box>
+                </box>
+                <sliders/>
+            </box>
+        </def>
+
+        <def name="wifi_left">
+            <box orientation="v" space-evenly="false" visible="{{active=='wifi'}}">
+                <input class="search" space-evenly="false" value="Wifi Networks near you:"/>
+                <box class="results"></box>
+            </box>
+        </def>
+
+        <def name="bluetooth_left">
+            <box orientation="v" space-evenly="false" visible="{{active=='bluetooth'}}">
+                <input class="search" space-evenly="false" value="Search Bluetooth Devices Near You"/>
+                <box class="results"></box>
+            </box>
+        </def>
+
+        <def name="apps_left">
+            <box orientation="v" space-evenly="false" visible="{{active=='apps'}}">
+                <input class="search" space-evenly="false" value="Search Through Installed Applications" onchange="~/.config/eww/scripts/ewwmenu {}"/>
+                <box space-evenly="true" class="results">
+                    <literal content='{{buttonxml}}'/>
+                </box>
+            </box>
+        </def>
+    </definitions>
+
+    <variables>
+        <!--What's Active?-->
+        <script-var name="init_active" interval="10000s">echo 'default' > ~/.config/eww/data/activeleft; ~/.config/eww/scripts/ewwmenu;</script-var>
+        <script-var name="active" interval="500ms">cat ~/.config/eww/data/activeleft</script-var>
+        <script-var name="buttonxml" interval="500ms">cat ~/.config/eww/data/appxml</script-var>
+		<script-var name="ctag" interval="100ms">cat ~/.dwmii | tail -n 7 | head -n 1 | cut -d ":" -f 2 | cut -d "," -f 1 | sed "s/\ //g"</script-var>
+
+        <!-- Music vars -->
+        <script-var name="music" interval="500ms">~/.config/eww/scripts/gettitle</script-var>
+        <script-var name="artist" interval="500ms">echo Music playing on archbox</script-var>
+       
+        <!--Volume var-->
+        <script-var name="volume" interval="500ms">~/.config/eww/scripts/getvol</script-var>
+
+        <!--Date vars-->
+        <script-var name="min" interval="10s">date "+%M"</script-var>
+        <script-var name="hour" interval="1m">date "+%H"</script-var>
+
+        <script-var name="date" interval="10m">date +%a</script-var>
+        <script-var name="day" interval="10m">date +%h\ %d</script-var>
+
+        <!--utilization vars-->
+        <script-var name="ram-used" interval="1s">~/.config/eww/scripts/getram</script-var>
+        <script-var name="cpu" interval="1s">~/.config/eww/scripts/getcpu</script-var>
+
+        <!--Battery charge var-->
+        <script-var name="battery-remaining" interval="2m">~/.config/eww/scripts/getcharge</script-var>
+        <script-var name="charge" interval="10s">cat /sys/class/power_supply/BAT0/status</script-var>
+
+        <!-- Backlight -->
+        <script-var name="light" interval="500ms">xbacklight -get</script-var>
+
+        <!-- Weather Data -->
+        <script-var name="sky" interval="10m">~/.config/eww/scripts/weather;</script-var>
+        <script-var name="temp" interval="10m">curl "wttr.in?format=%t\n%h\n%f\n%w" | head -n 1;</script-var>
+        <script-var name="feeling" interval="10m">curl "wttr.in?format=%t\n%h\n%f\n%w" | tail -n 2 | head -n 1;</script-var>
+        <script-var name="humidity" interval="10m">curl "wttr.in?format=%t\n%h\n%f\n%w" | head -n 2 | tail -n 1;</script-var>
+        <script-var name="wind" interval="10m">curl "wttr.in?format=%t\n%h\n%f\n%w" | tail -n 1;</script-var>
+		<script-var name="sky_icon" interval="10m">echo '&'</script-var>
+        <script-var name="sky_icon_code" interval="10m">echo 1234</script-var>
+    </variables>
+
+    <windows>
+        <window name="bar" screen="0" stacking="bg">
+            <geometry anchor= "top left" x="12%" y="5px" width="75%" height="10px"/> <!--Specifies geometry-->
+            <reserve side="top" distance="4%"/>
+            <widget>
+                <bar/>
+            </widget>
+        </window>
+
+        <window name="launcher" screen="0" stacking="fg" focusable="false">
+            <geometry anchor= "top left" width="100%" height="100%"/> <!--Specifies geometry-->
+            <widget>
+                <box class="screen" space-evenly="true">
+                    <box orientation="h" space-evenly="false" halign="center" valign="center">
+                        <box class="left" orientation="v" space-evenly="false">
+							<default_left/>
+							<!--
+                            <wifi_left/>
+                            <bluetooth_left/>
+                            <apps_left/>
+							<box class="launchbuttongroup" orientation="h" space-evenly="false">
+                                <home/>
+                                <apps/>
+                                <wifi/>
+                                <bluetooth/>
+							</box> -->
+                        </box>
+                        <box class="right" orientation="v" valign="center" halign="center" space-evenly="false">
+                            <box orientation="h" space-evenly="false">
+                                <box orientation="v" space-evenly="true">
+                                    <musicbox/>
+									<stats/>
+                                </box>
+                                <controls/>
+                            </box>
+							<!-- <box orientation="h" space-evenly="false" class="statgroup">
+                                <volume/>
+                                <stats/>
+							</box> -->
+                            <box orientation="h" space-evenly="false" class="weathergroup">
+                                <mainweather/>
+                                <sideweather/>
+                                <box orientation="v" space-evenly="false" class="altbuttongroup">
+                                    <exit/>
+                                    <refresh/>
+                                </box>
+                            </box>
+                        </box>
+                    </box>
+                </box>
+            </widget>
+        </window>
+    </windows>
+</eww>

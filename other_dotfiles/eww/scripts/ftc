@@ -1,0 +1,2 @@
+#!/bin/bash
+echo $(calc $(calc $1 - 32) '* 5 / 9') | cut -c 2- | cut -c -4

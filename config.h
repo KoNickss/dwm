@@ -5,24 +5,28 @@ static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "togg
 static const char *upvolx[]   = { "/usr/bin/pkill", "-RTMIN+11", "dwmblocks",    NULL };
 static const char *downvolx[]   = { "/usr/bin/pkill", "-RTMIN+11", "dwmblocks",    NULL };
 static const char *mutevolx[]   = { "/usr/bin/pkill", "-RTMIN+11", "dwmblocks",    NULL };
+static const char *altbarclass      = "eww-bar"; /* Alternate bar class name */
+static const char *altbarcmd        = "/home/konicks/.barrc"; /* Alternate bar launch command */
+static const int usealtbar          = 1;        /* 1 means use non-dwm status bar */
 /* See LICENSE file for copyright and license details. */
 /* appearance */
 static const unsigned int borderpx = 3;   /* border pixel of windows */
-static const unsigned int gappx     = 50;       /* gap pixel between windows and dwm*/
+static const unsigned int gappx     = 60;       /* gap pixel between windows and dwm*/
 //static const unsigned int framex	= 50; /* gap between windows */
 static const unsigned int snap     = 32;  /* snap pixel */
 static const int showbar           = 1;   /* 0 means no bar */
 static const int topbar            = 1;   /* 0 means bottom bar */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
-static const unsigned int baralpha = 0xA0;
-static const unsigned int borderalpha = OPAQUE;
+static const unsigned int baralpha = 0xFF;
+static const unsigned int borderalpha = 0xFF;
 /* Mononoki Nerd Font must be installed from AUR nerd-fonts-complete.
  * Otherwise, your default font will be Hack which is found in the standard
  * Arch repos and is listed as a dependency for this build. JoyPixels is also
  * a hard dependency and makes colored fonts and emojis possible.
  */
 static const char *fonts[]     = {
+								  "Cascadia Code:size=12:antialias=true:autohint=true",
 								  "JetBrains Mono:size=12:antialias=true:autohint=true",
                                   "Hack:size=10:antialias=true:autohint=true",
                                   "JoyPixels:size=10:antialias=true:autohint=true"
@@ -43,21 +47,30 @@ static const char col_6[]  = "#333333"; /* border color focused windows and tags
  * 0xee adds wee bit of transparency.
  * Play with the value to get desired transparency.
  */
+/*
 static const char *colors[][3]        = {
-	/*               fg         bg         border   */
 	[SchemeNorm] = { col_3, col_1, col_5 },
 	[SchemeSel]  = { col_3, col_5,  col_5 },
 	[SchemeTitle]  = { col_3, col_1,  col_5 },
 };
+*/
+static const char *colors[][3]        = {
+	[SchemeNorm] = { "#aaaaaa", "#121212", "#121212" },
+	[SchemeSel] = { "#aaaaaa", "#222222", "#121212" },
+	[SchemeTitle] = { "#aaaaaa", "#121212", "#121212" },
+};
+
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm] = { baralpha, baralpha, borderalpha },
-	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { baralpha, baralpha, borderalpha },
+	[SchemeTitle]  = { baralpha, baralpha, borderalpha },
 };
 
 /* tagging */
 //static const char *tags[] = { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "}; 
-static const char *tags[] = { " env ", " www ", " ext ", " go ", " home ", " srv ", " spot ", " dis ", " vbox "}; 
+//static const char *tags[] = { " env ", " www ", " ext ", " go ", " home ", " srv ", " spot ", " dis ", " vbox "}; 
+static const char *tags[]={" 一 "," 二 "," 三 "," 四 "," 五 "," 六 "," 七 "," 八 "," 九 "};
 
 
 static const Rule rules[] = {
@@ -88,7 +101,7 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "</>",      tile },    /* first entry is default */
-	{ "~~",      NULL },    /* no layout function means floating behavior */
+	{ "~~~",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 	{ NULL,       NULL },
 };
@@ -138,8 +151,7 @@ static Key keys[] = {
 	{ 0,        XK_Print,    spawn,          CMD("maim ~/screenshots/$(date +%s).png") },
 	{ MODKEY,        XK_s,    spawn,          CMD("scrot -s ~/screenshots/$(date +%s).png") },
     /* Layout manipulation */
-	{ MODKEY,               XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,     XK_space,  togglefloating, {0} },
+	{ MODKEY,               XK_space,  spawn,      CMD("eww open launcher") },
 
     /* Switch to specific layouts */
 	{ MODKEY,               XK_t,      setlayout,      {.v = &layouts[0]} },
