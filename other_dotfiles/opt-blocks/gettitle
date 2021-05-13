@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [  "$(pgrep spotify)" ]; then
+    player="Spotify"
+else
+    player="Music Player Daemon"
+fi
+
+/opt/blocks/mpris_data "$player"

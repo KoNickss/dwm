@@ -1,6 +1,4 @@
 <box orientation="v" class="results" space-evenly="false">
-<button onclick='/usr/bin/avahi-discover &amp;'>Avahi Zeroconf Browser</button>
-</box>
 <button onclick='alacritty &amp;'>Alacritty</button>
 <button onclick='/usr/bin/startapache &amp;'>Apache Starter</button>
 <button onclick='assistant &amp;'>Qt Assistant</button>

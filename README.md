@@ -18,6 +18,11 @@ Commit ID: https://github.com/KoNickss/dwm/tree/f6a87e3387447c80b2b4477eac82a89a
 <img src=media/stackos.png>
 Commit ID: https://github.com/KoNickss/dwm/tree/efd4f1c707a4f9698cdb2ab45735eafaf6531fa1
 
+## StackOS Pro
+
+<img src=media/stackpro.png>
+Commit ID: master
+
 # How to apply rice
 If you want to apply an older rice, just do `git checkout ID` where ID is the long string at the end of the URL for the rice
 

@@ -371,7 +371,7 @@ contain are defined. -->
     </variables>
 
     <windows>
-        <window name="bar" screen="0" stacking="bg">
+        <window name="bar" screen="0" stacking="fg">
             <geometry anchor= "top left" x="12%" y="5px" width="75%" height="10px"/> <!--Specifies geometry-->
             <reserve side="top" distance="4%"/>
             <widget>

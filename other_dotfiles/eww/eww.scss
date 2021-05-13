@@ -26,8 +26,8 @@ button {
     }
 
     & {
-        background-color: #f0f0f1;
-        color: #222222;
+        background-color: #131316;
+        color: #f0f0f1;
         font-family: ManRope;
         //font-family: Manrope-Regular;
         font-variant: normal;
@@ -37,7 +37,7 @@ button {
 
 .right slider, .left slider {
     all: unset;
-    color: #120000;
+    color: #121212;
 }
 
 .barslider scale trough {
@@ -53,7 +53,7 @@ button {
 
 .vol scale trough highlight {
     all: unset;
-    background-color: #8f8aac;
+    background-color: #87a0ff;
     border-radius: 10px;
 }
 
@@ -413,7 +413,7 @@ button {
 }
 
 .screen {
-    background: rgba(76, 76, 76, 0.6);
+    background: rgba(22, 22, 22, 0.6);
 }
 
 .volumebox {
