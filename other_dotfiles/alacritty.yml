@@ -820,7 +820,7 @@ schemes:
          #background: '0x0b0e15'
          #background: '0x282c39'
          #background: '0x283045'
-       background: '0x282828'
+       background: '0x181f25'
        foreground: '0xD8DEE9'
      normal:
        black:   '0x3B4252'
