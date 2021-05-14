@@ -7,24 +7,26 @@ Also includes my other buids and configs in `other_dotfiles`, basically you can 
 
 ## Frost
 <img src=media/frost.png>
-Commit ID: https://github.com/KoNickss/dwm/tree/bff875873589bcd96785b9b765d8accf2d9370f4
+Commit ID: bff875873589bcd96785b9b765d8accf2d9370f4
 
 
 ## Mitochondria
 <img src=media/mitochondria.png>
-Commit ID: https://github.com/KoNickss/dwm/tree/f6a87e3387447c80b2b4477eac82a89a79fe80de
+Commit ID: f6a87e3387447c80b2b4477eac82a89a79fe80de
 
 ## StackOS
 <img src=media/stackos.png>
-Commit ID: https://github.com/KoNickss/dwm/tree/efd4f1c707a4f9698cdb2ab45735eafaf6531fa1
+Commit ID: efd4f1c707a4f9698cdb2ab45735eafaf6531fa1
+
+### NOTICE: The dwm included with this rice is broken because I'm an idiot, please use the dwm included with stackOS pro and edit the gaps in config.h as you please
 
 ## StackOS Pro
 
 <img src=media/stackpro.png>
-Commit ID: https://github.com/KoNickss/dwm/tree/e8fb61792a3b5e3ce43bd70166e1da069b8fa4de
+Commit ID: ebdde559b97f03287fea06dce86a94cd74f5f41f
 
 # How to apply rice
-If you want to apply an older rice, just do `git checkout ID` where ID is the long string at the end of the URL for the rice
+If you want to apply an older rice, just do `git checkout ID` where ID is the commit ID for that rice
 
 Next build dwm, do `make clean install` with root priviliges in the git root
 
@@ -32,7 +34,7 @@ To apply the other dotfiles, simply move them in their place in the filesystem (
 
 If that rice contains transparency, you will need picom-tryone-git (it's on github and the AUR)
 
-Don't forget to add the .xnintrcdwm (to ~/), .dwminit if neccesary (also to ~/), and Xsession file to be able to load dwm from a login manager
+Don't forget to add the .xinitrcdwm (to ~/), .dwminit if neccesary (also to ~/), and Xsession file to be able to load dwm from a login manager
 
 Any issue? Create an issue on the gh page or message me
 
