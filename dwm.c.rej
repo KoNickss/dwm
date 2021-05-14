@@ -1,69 +1,37 @@
 --- dwm.c
 +++ dwm.c
-@@ -283,17 +305,27 @@ static void (*handler[LASTEvent]) (XEvent *) = {
- 	[UnmapNotify] = unmapnotify
- };
- static Atom wmatom[WMLast], netatom[NetLast];
-+static int epoll_fd;
-+static int dpy_fd;
- static int running = 1;
- static Cur *cursor[CurLast];
- static Clr **scheme;
- static Display *dpy;
- static Drw *drw;
--static Monitor *mons, *selmon;
-+static Monitor *mons, *selmon, *lastselmon;
+@@ -269,11 +266,6 @@ static Drw *drw;
+ static Monitor *mons, *selmon;
  static Window root, wmcheckwin;
  
-+#include "ipc.h"
-+
+-static int useargb = 0;
+-static Visual *visual;
+-static int depth;
+-static Colormap cmap;
+-
  /* configuration, allows nested code to access above variables */
  #include "config.h"
  
-+#ifdef VERSION
-+#include "IPCClient.c"
-+#include "yajl_dumps.c"
-+#include "ipc.c"
-+#endif
-+
- /* compile-time check if all tags fit into an unsigned int bit array. */
- struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
- 
-@@ -1682,8 +1779,37 @@ setup(void)
- 	XSelectInput(dpy, root, wa.event_mask);
- 	grabkeys();
- 	focus(NULL);
-+	setupepoll();
- }
- 
-+void
-+setupepoll(void)
-+{
-+	epoll_fd = epoll_create1(0);
-+	dpy_fd = ConnectionNumber(dpy);
-+	struct epoll_event dpy_event;
-+
-+	// Initialize struct to 0
-+	memset(&dpy_event, 0, sizeof(dpy_event));
-+
-+	DEBUG("Display socket is fd %d\n", dpy_fd);
-+
-+	if (epoll_fd == -1) {
-+		fputs("Failed to create epoll file descriptor", stderr);
-+	}
-+
-+	dpy_event.events = EPOLLIN;
-+	dpy_event.data.fd = dpy_fd;
-+	if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, dpy_fd, &dpy_event)) {
-+		fputs("Failed to add display file descriptor to epoll", stderr);
-+		close(epoll_fd);
-+		exit(1);
-+	}
-+
-+	if (ipc_init(ipcsockpath, epoll_fd, ipccommands, LENGTH(ipccommands)) < 0) {
-+		fputs("Failed to initialize IPC\n", stderr);
-+	}
-+}
- 
- void
- seturgent(Client *c, int urg)
+@@ -1812,18 +1803,16 @@ updatebars(void)
+ 	Monitor *m;
+ 	XSetWindowAttributes wa = {
+ 		.override_redirect = True,
+-		.background_pixel = 0,
+-		.border_pixel = 0,
+-		.colormap = cmap,
++		.background_pixmap = ParentRelative,
+ 		.event_mask = ButtonPressMask|ExposureMask
+ 	};
+ 	XClassHint ch = {"dwm", "dwm"};
+ 	for (m = mons; m; m = m->next) {
+ 		if (m->barwin)
+ 			continue;
+-		m->barwin = XCreateWindow(dpy, root, m->wx, m->by, m->ww, bh, 0, depth,
+-		                          InputOutput, visual,
+-		                          CWOverrideRedirect|CWBackPixel|CWBorderPixel|CWColormap|CWEventMask, &wa);
++		m->barwin = XCreateWindow(dpy, root, m->wx, m->by, m->ww, bh, 0, DefaultDepth(dpy, screen),
++				CopyFromParent, DefaultVisual(dpy, screen),
++				CWOverrideRedirect|CWBackPixmap|CWEventMask, &wa);
+ 		XDefineCursor(dpy, m->barwin, cursor[CurNormal]->cursor);
+ 		XMapRaised(dpy, m->barwin);
+ 		XSetClassHint(dpy, m->barwin, &ch);

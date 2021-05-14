@@ -21,8 +21,8 @@ static const unsigned int baralpha = 0xFF;
 static const unsigned int borderalpha = 0xFF;
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 70;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 70;       /* vert outer gap between windows and screen edge */
+static const unsigned int gappoh    = 90;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 90;       /* vert outer gap between windows and screen edge */
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 
 /* Mononoki Nerd Font must be installed from AUR nerd-fonts-complete.
