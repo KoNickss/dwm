@@ -11,7 +11,6 @@ static const int usealtbar          = 1;        /* 1 means use non-dwm status ba
 /* See LICENSE file for copyright and license details. */
 /* appearance */
 static const unsigned int borderpx = 3;   /* border pixel of windows */
-static const unsigned int gappx     = 60;       /* gap pixel between windows and dwm*/
 //static const unsigned int framex	= 50; /* gap between windows */
 static const unsigned int snap     = 32;  /* snap pixel */
 static const int showbar           = 1;   /* 0 means no bar */
@@ -20,6 +19,12 @@ static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
 static const unsigned int baralpha = 0xFF;
 static const unsigned int borderalpha = 0xFF;
+static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 70;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 70;       /* vert outer gap between windows and screen edge */
+static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
+
 /* Mononoki Nerd Font must be installed from AUR nerd-fonts-complete.
  * Otherwise, your default font will be Hack which is found in the standard
  * Arch repos and is listed as a dependency for this build. JoyPixels is also
