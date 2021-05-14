@@ -23,7 +23,7 @@ Commit ID: efd4f1c707a4f9698cdb2ab45735eafaf6531fa1
 ## StackOS Pro
 
 <img src=media/stackpro.png>
-Commit ID: ebdde559b97f03287fea06dce86a94cd74f5f41f
+Commit ID: 30f9e7be925835884bae66f6f95ff58a486a7208
 
 # How to apply rice
 If you want to apply an older rice, just do `git checkout ID` where ID is the commit ID for that rice
